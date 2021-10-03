@@ -1,0 +1,19 @@
+step1: 数据配置和环境配置
+把原始数据放到这个目录:raw_data/tagging_dataset_test_5k_2nd
+运行init.sh,安装requirement.txt中的环境(包括特征提取环境和模型运行环境)
+
+step2: 模型训练
+把训练集特征放到tagging_dataset_train_5k中四个模态对应目录(audio,text,image都是原本特征,video是我们提取的特征)
+运行train.sh,依次完成model1,model2,model3的10折训练,产生对应的模型参数到output/weight/{name}/中
+
+step3: 提取测试集视频特征
+
+在网盘链接下载特征提取的模型checkpoint文件，
+包括imagenet21k_ViT-B_16.npz, imagenet21k_ViT-H_14.npz, imagenet21k+imagenet2012_ViT-L_16-224.npz
+放到这个目录: pre/feats_extract/imgfeat_extractor/checkpoint
+
+依次执行run_feature_extract.ipynb中的命令 生成三种视频特征
+
+step4: 运行inference.sh
+生成每一折的预测文件到output/pkl中
+生成最终提交文件到output/result中

@@ -1,0 +1,24 @@
+#############################################################
+#  1. Model Define Configs
+#############################################################
+
+save_name: 'model2' #H14拼L16
+num_epoch: 30
+batch_size: 16
+text_max_len: 512
+max_frame: 120
+ModelConfig:
+  model_type: 'NextVladBERT'
+  video_embed_dim: 2304
+  use_modal_drop: True #在训练过程中，对多模态特征的某一模态进行丢弃
+  with_embedding_bn: False #对不同模态输入特征进行BN归一化
+  modal_drop_rate: 0.15
+  with_video_head: True #视频特征
+  with_audio_head: True #音频特征
+  with_text_head: True  #文本特征
+  with_image_head: False # False #图片特征
+  with_occur_head: False #统计特征
+  with_label_graph: False
+  use_noise: False
+  noise_prob: 0.5
+
